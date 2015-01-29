@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+@import AVFoundation;
 
-@interface FirstViewController : UIViewController
+@interface FirstViewController : UIViewController<AVCaptureMetadataOutputObjectsDelegate>
 
+@property (weak, nonatomic) IBOutlet UIView *CameraPreview;
+@property (weak, nonatomic) IBOutlet UITextField *Section;
+@property (weak, nonatomic) IBOutlet UITextField *Std_ID;
+@property (weak, nonatomic) IBOutlet UIButton *submit_bt;
 
 @end
 
