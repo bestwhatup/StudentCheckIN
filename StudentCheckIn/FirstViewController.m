@@ -19,6 +19,7 @@
     AVCaptureVideoPreviewLayer *preview;
     BOOL running;
     AVCaptureMetadataOutput *metadataOutput;
+    NSString *string_Std_ID;
 }
 
 @synthesize CameraPreview,Section,Std_ID,submit_bt;
@@ -26,12 +27,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
+    string_Std_ID = [[NSString alloc] init];
     [self setupCaptureSession];
     preview.frame = CameraPreview.bounds;
     [CameraPreview.layer addSublayer:preview];
-
-    
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -49,19 +48,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)startRunning {
-    if (running) return;
-    [captureSession startRunning];
-    metadataOutput.metadataObjectTypes = metadataOutput.availableMetadataObjectTypes;
-    running = YES;
-}
-
-- (void)stopRunning {
-    if (!running) return;
-    [captureSession stopRunning];
-    running = NO;
-}
-
 - (void)setupCaptureSession {
     if (captureSession) return;
     
@@ -75,7 +61,7 @@
     captureSession = [[AVCaptureSession alloc] init];
     //init video input
     videoInput = [[AVCaptureDeviceInput alloc]
-                   initWithDevice:videoDevice error:nil];
+                  initWithDevice:videoDevice error:nil];
     
     if ([captureSession canAddInput:videoInput]) {
         [captureSession addInput:videoInput];
@@ -83,9 +69,9 @@
     
     // 6
     preview = [[AVCaptureVideoPreviewLayer alloc]
-                     initWithSession:captureSession];
+               initWithSession:captureSession];
     preview.videoGravity = AVLayerVideoGravityResizeAspectFill;
-
+    
     // capture and process the metadata
     metadataOutput = [[AVCaptureMetadataOutput alloc] init];
     dispatch_queue_t metadataQueue = dispatch_queue_create("com.Chawatvish.StudentCheckIn.metadata", 0);
@@ -93,6 +79,38 @@
     if ([captureSession canAddOutput:metadataOutput]) {
         [captureSession addOutput:metadataOutput];
     }
+}
+
+- (void)startRunning {
+    if (running) return;
+    [captureSession startRunning];
+    metadataOutput.metadataObjectTypes = metadataOutput.availableMetadataObjectTypes;
+    running = YES;
+}
+
+- (void)stopRunning {
+    if (!running) return;
+    [captureSession stopRunning];
+    running = NO;
+    NSLog(@"%@",string_Std_ID);
+    Std_ID.text = string_Std_ID;
+}
+
+-(void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection {
+    [metadataObjects enumerateObjectsUsingBlock:^(AVMetadataObject *obj, NSUInteger idx, BOOL *stop)
+     {
+         if ([obj isKindOfClass:
+              [AVMetadataMachineReadableCodeObject class]])
+         {
+             // 3
+             AVMetadataMachineReadableCodeObject *code = (AVMetadataMachineReadableCodeObject*)
+             [preview transformedMetadataObjectForMetadataObject:obj];
+             if (code.stringValue) {
+                 string_Std_ID = code.stringValue;
+                 [self stopRunning];
+             }
+         }
+     }];
 }
 
 @end
