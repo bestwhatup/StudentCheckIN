@@ -44,6 +44,8 @@
 -(void)viewDidAppear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self startRunning];
+    Std_ID.text = @"";
+    Section.text = @"";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasHidden:) name:UIKeyboardDidHideNotification object:nil];
 }
@@ -162,5 +164,16 @@
         Std_ID.text = @"";
         [self startRunning];
     }
+}
+
+- (IBAction)CheckIn:(id)sender {
+    if ([Std_ID.text intValue] && ([Section.text isEqual:@"1"] || [Section.text isEqual:@"2"] || [Section.text isEqual:@"3"])) {
+        UIAlertView *alvshow = [[UIAlertView alloc] initWithTitle:@"" message:@"Check in เรียบร้อย" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alvshow show];
+    } else {
+        UIAlertView *alvshow = [[UIAlertView alloc] initWithTitle:@"" message:@"กรอกข้อมูลไม่ครบ หรือ กรอกไม่ถูกต้อง" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alvshow show];
+    }
+
 }
 @end
