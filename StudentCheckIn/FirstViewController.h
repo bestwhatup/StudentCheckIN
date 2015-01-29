@@ -9,12 +9,15 @@
 #import <UIKit/UIKit.h>
 @import AVFoundation;
 
-@interface FirstViewController : UIViewController<AVCaptureMetadataOutputObjectsDelegate>
+@interface FirstViewController : UIViewController <UITextFieldDelegate,AVCaptureMetadataOutputObjectsDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *CameraPreview;
 @property (weak, nonatomic) IBOutlet UITextField *Section;
 @property (weak, nonatomic) IBOutlet UITextField *Std_ID;
 @property (weak, nonatomic) IBOutlet UIButton *submit_bt;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *keyboardHeight;
+- (IBAction)ScanCodeAgain:(id)sender;
 
 @end
 

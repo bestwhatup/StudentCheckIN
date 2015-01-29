@@ -27,6 +27,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    UITapGestureRecognizer *checkGesture = [[UITapGestureRecognizer alloc]
+                                            initWithTarget: self
+                                            action: @selector(hideKeyboard:)];
+    [checkGesture setNumberOfTouchesRequired:1];
+    [[self view] addGestureRecognizer:checkGesture];
+
+    
     string_Std_ID = [[NSString alloc] init];
     [self setupCaptureSession];
     preview.frame = CameraPreview.bounds;
@@ -36,17 +44,48 @@
 -(void)viewDidAppear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self startRunning];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasHidden:) name:UIKeyboardDidHideNotification object:nil];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self stopRunning];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasHidden:) name:UIKeyboardDidHideNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)hideKeyboard:(UITapGestureRecognizer *)sender {
+    [Std_ID resignFirstResponder];
+    [Section resignFirstResponder];
+}
+
+- (void)keyboardWasShown:(NSNotification *)aNotification {
+    NSDictionary *info = [aNotification userInfo];
+    
+    NSValue *kbFrame = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardFrame = [kbFrame CGRectValue];
+    
+    CGFloat height = keyboardFrame.size.height;
+    self.keyboardHeight.constant = -height;
+    
+    [UIView animateWithDuration:0.15 animations:^{
+        [self.view layoutIfNeeded];
+    }];
+}
+
+-(void)keyboardWasHidden:(NSNotification *)aNotification {
+    self.keyboardHeight.constant = 21;
+    [UIView animateWithDuration:0.15 animations:^{
+        [self.view layoutIfNeeded];
+    }];
+}
+
 
 - (void)setupCaptureSession {
     if (captureSession) return;
@@ -92,8 +131,13 @@
     if (!running) return;
     [captureSession stopRunning];
     running = NO;
-    NSLog(@"%@",string_Std_ID);
-    Std_ID.text = string_Std_ID;
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        //Background Thread
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            Std_ID.text = string_Std_ID;
+        });
+    });
+    
 }
 
 -(void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection {
@@ -113,4 +157,10 @@
      }];
 }
 
+- (IBAction)ScanCodeAgain:(id)sender {
+    if(running == false) {
+        Std_ID.text = @"";
+        [self startRunning];
+    }
+}
 @end
