@@ -168,6 +168,8 @@
 
 - (IBAction)CheckIn:(id)sender {
     if ([Std_ID.text intValue] && ([Section.text isEqual:@"1"] || [Section.text isEqual:@"2"] || [Section.text isEqual:@"3"])) {
+        [Section resignFirstResponder];
+        [Std_ID resignFirstResponder];
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
         
@@ -187,6 +189,8 @@
             [alvshow show];
         }
     } else {
+        [Section resignFirstResponder];
+        [Std_ID resignFirstResponder];
         UIAlertView *alvshow = [[UIAlertView alloc] initWithTitle:@"" message:@"กรอกข้อมูลไม่ครบ หรือ กรอกไม่ถูกต้อง" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alvshow show];
     }

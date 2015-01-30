@@ -149,7 +149,7 @@
             </objects>
             <point key="canvasLocation" x="750" y="-320"/>
         </scene>
-        <!--Send DATA-->
+        <!--Student List-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="SecondViewController" sceneMemberID="viewController">
@@ -205,7 +205,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="gYd-yX-Lrb" secondAttribute="trailing" constant="-16" id="nVW-hP-zZC"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Send DATA" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Student List" image="second" id="cPa-gy-q4n"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="TableView" destination="gYd-yX-Lrb" id="0r0-oH-9sb"/>
@@ -214,6 +214,45 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="750" y="360"/>
+        </scene>
+        <!--Send DATA-->
+        <scene sceneID="xiX-GN-UYY">
+            <objects>
+                <viewController id="ugB-nF-ldU" customClass="SendData" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lOt-aP-DDd"/>
+                        <viewControllerLayoutGuide type="bottom" id="63O-na-gZR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Hx0-KB-1KU">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZK7-98-grf">
+                                <rect key="frame" x="74" y="242" width="173" height="63"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="173" id="CG9-lL-hAh"/>
+                                    <constraint firstAttribute="height" constant="63" id="U6m-uv-rhv"/>
+                                </constraints>
+                                <state key="normal" title="Send Data To Server">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="SendDatatoServer:" destination="ugB-nF-ldU" eventType="touchUpInside" id="1ha-JS-IVG"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="ZK7-98-grf" secondAttribute="centerX" constant="-0.5" id="7jM-wf-dJG"/>
+                            <constraint firstItem="ZK7-98-grf" firstAttribute="top" secondItem="lOt-aP-DDd" secondAttribute="bottom" constant="222" id="GtM-8E-0gU"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Send DATA" id="Q5n-Gi-yPV"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g0w-73-HPt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="750" y="1040"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -228,6 +267,7 @@
                     <connections>
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="ugB-nF-ldU" kind="relationship" relationship="viewControllers" id="pP8-cd-ZGR"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>

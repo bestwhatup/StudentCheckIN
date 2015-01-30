@@ -48,7 +48,6 @@
         [date_array addObject:date];
         [std_id_array addObject:std_id];
     }
-    
     [TableView reloadData];
 }
 

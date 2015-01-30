@@ -22,6 +22,8 @@
 		3879F4741A7A9E380061D306 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3879F46D1A7A9E380061D306 /* FMDatabaseQueue.m */; };
 		3879F4751A7A9E380061D306 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 3879F4701A7A9E380061D306 /* FMResultSet.m */; };
 		3879F4791A7B248B0061D306 /* CheckIN.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 3879F4781A7AA1CE0061D306 /* CheckIN.sqlite */; };
+		38ED68051A7B52E70051F544 /* SendData.m in Sources */ = {isa = PBXBuildFile; fileRef = 38ED68041A7B52E70051F544 /* SendData.m */; };
+		38ED68081A7B54990051F544 /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 38ED68071A7B54990051F544 /* CHCSVParser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,10 @@
 		3879F46F1A7A9E380061D306 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		3879F4701A7A9E380061D306 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		3879F4781A7AA1CE0061D306 /* CheckIN.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = CheckIN.sqlite; sourceTree = "<group>"; };
+		38ED68031A7B52E70051F544 /* SendData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendData.h; sourceTree = "<group>"; };
+		38ED68041A7B52E70051F544 /* SendData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendData.m; sourceTree = "<group>"; };
+		38ED68061A7B54990051F544 /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSVParser.h; sourceTree = "<group>"; };
+		38ED68071A7B54990051F544 /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVParser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +117,8 @@
 				387083751A7A21E600355B7A /* FirstViewController.m */,
 				387083771A7A21E600355B7A /* SecondViewController.h */,
 				387083781A7A21E600355B7A /* SecondViewController.m */,
+				38ED68031A7B52E70051F544 /* SendData.h */,
+				38ED68041A7B52E70051F544 /* SendData.m */,
 				3870837A1A7A21E600355B7A /* Main.storyboard */,
 				3870837D1A7A21E600355B7A /* Images.xcassets */,
 				3870837F1A7A21E600355B7A /* LaunchScreen.xib */,
@@ -122,6 +130,8 @@
 		3870836D1A7A21E600355B7A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				38ED68061A7B54990051F544 /* CHCSVParser.h */,
+				38ED68071A7B54990051F544 /* CHCSVParser.m */,
 				3879F4631A7A9E1E0061D306 /* libsqlite3.dylib */,
 				3879F4781A7AA1CE0061D306 /* CheckIN.sqlite */,
 				3879F4651A7A9E380061D306 /* fmdb */,
@@ -269,12 +279,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				387083791A7A21E600355B7A /* SecondViewController.m in Sources */,
+				38ED68081A7B54990051F544 /* CHCSVParser.m in Sources */,
 				3879F4741A7A9E380061D306 /* FMDatabaseQueue.m in Sources */,
 				387083731A7A21E600355B7A /* AppDelegate.m in Sources */,
 				387083761A7A21E600355B7A /* FirstViewController.m in Sources */,
 				3879F4711A7A9E380061D306 /* FMDatabase.m in Sources */,
 				3879F4731A7A9E380061D306 /* FMDatabasePool.m in Sources */,
 				3879F4751A7A9E380061D306 /* FMResultSet.m in Sources */,
+				38ED68051A7B52E70051F544 /* SendData.m in Sources */,
 				387083701A7A21E600355B7A /* main.m in Sources */,
 				3879F4721A7A9E380061D306 /* FMDatabaseAdditions.m in Sources */,
 			);
