@@ -233,18 +233,33 @@
                                     <constraint firstAttribute="width" constant="173" id="CG9-lL-hAh"/>
                                     <constraint firstAttribute="height" constant="63" id="U6m-uv-rhv"/>
                                 </constraints>
-                                <state key="normal" title="Send Data To Server">
+                                <state key="normal" title="Send CSV file to email">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="SendDatatoServer:" destination="ugB-nF-ldU" eventType="touchUpInside" id="1ha-JS-IVG"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PDk-JN-r4M">
+                                <rect key="frame" x="79" y="349" width="163" height="79"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="79" id="WIY-8t-7Q9"/>
+                                    <constraint firstAttribute="width" constant="163" id="ZnW-M8-Nvl"/>
+                                </constraints>
+                                <state key="normal" title="Delete data in database">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteData:" destination="ugB-nF-ldU" eventType="touchUpInside" id="EHG-1q-Sqp"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="ZK7-98-grf" secondAttribute="centerX" constant="-0.5" id="7jM-wf-dJG"/>
+                            <constraint firstItem="PDk-JN-r4M" firstAttribute="top" secondItem="lOt-aP-DDd" secondAttribute="bottom" constant="329" id="FHn-Gm-W9j"/>
                             <constraint firstItem="ZK7-98-grf" firstAttribute="top" secondItem="lOt-aP-DDd" secondAttribute="bottom" constant="222" id="GtM-8E-0gU"/>
+                            <constraint firstAttribute="centerX" secondItem="PDk-JN-r4M" secondAttribute="centerX" constant="-0.5" id="JB1-94-VJJ"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Send DATA" id="Q5n-Gi-yPV"/>

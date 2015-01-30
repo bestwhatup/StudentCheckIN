@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "FMDatabase.h"
 #import "CHCSVParser.h"
+#import <MessageUI/MessageUI.h>
 
-@interface SendData : UIViewController
+@interface SendData : UIViewController <MFMailComposeViewControllerDelegate>
 - (IBAction)SendDatatoServer:(id)sender;
+- (IBAction)deleteData:(id)sender;
 
 @end

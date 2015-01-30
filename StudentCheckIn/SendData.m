@@ -52,7 +52,9 @@
     
     NSString *stringFromDate = [formatter stringFromDate:[NSDate date]];
     
-    NSString *CSVpath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"CheckIN_%@.csv",stringFromDate]];
+    NSString *filename = [NSString stringWithFormat:@"CheckIN_%@.csv",stringFromDate];
+    
+    NSString *CSVpath = [documentsDirectory stringByAppendingPathComponent:filename];
         
     FMDatabase *database = [FMDatabase databaseWithPath:dbpath];
     
@@ -70,5 +72,58 @@
         [csvWriter finishLine];
     }
     [csvWriter closeStream];
+    
+    NSString *emailTitle = [NSString stringWithFormat:@"Student Check IN file [CSV] date : %@",stringFromDate];
+    NSString *messageBody = @"Let's download";
+    NSArray *toRecipents = [NSArray arrayWithObject:@"bestwhatup@gmail.com"];
+    
+    MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
+    mc.mailComposeDelegate = self;
+    [mc setSubject:emailTitle];
+    [mc setMessageBody:messageBody isHTML:NO];
+    [mc setToRecipients:toRecipents];
+    
+    NSData *fileData = [NSData dataWithContentsOfFile:CSVpath];
+    
+    // Add attachment
+    [mc addAttachmentData:fileData mimeType:@"text/csv" fileName:filename];
+    
+    // Present mail view controller on screen
+    [self presentViewController:mc animated:YES completion:NULL];
+
 }
+
+- (IBAction)deleteData:(id)sender {
+}
+
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    UIAlertView *alv;
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            alv = [[UIAlertView alloc] initWithTitle:@"" message:@"Mail cancelled" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alv show];
+            break;
+        case MFMailComposeResultSaved:
+            alv = [[UIAlertView alloc] initWithTitle:@"" message:@"Mail saved" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alv show];
+            break;
+        case MFMailComposeResultSent:
+            alv = [[UIAlertView alloc] initWithTitle:@"" message:@"Mail sent" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alv show];
+            break;
+        case MFMailComposeResultFailed:
+            alv = [[UIAlertView alloc] initWithTitle:@"" message:@"Mail sent failure" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alv show];
+//            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
+            break;
+        default:
+            break;
+    }
+    
+    // Close the Mail Interface
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
 @end
