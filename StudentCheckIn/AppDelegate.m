@@ -17,6 +17,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [self performSelector:@selector(CopyDBtoDocument)withObject:nil];
+    
     return YES;
 }
 
@@ -40,6 +42,42 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+
+-(void)CopyDBtoDocument {
+    NSString *db_Name = @"CheckIN.sqlite";
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    //if don't have folder. this function is create folder;
+    NSError *error;
+    if (![[NSFileManager defaultManager] fileExistsAtPath:documentsDirectory]) {
+        
+        [[NSFileManager defaultManager] createDirectoryAtPath:documentsDirectory withIntermediateDirectories:NO attributes:nil error:&error]; //Create folder
+    }
+    
+    NSString *writeDBpath = [documentsDirectory stringByAppendingPathComponent:db_Name];
+    
+    BOOL foundInUsePath = [fileManager fileExistsAtPath:writeDBpath];
+    
+    if (foundInUsePath) {
+        NSLog(@"DB Exists");
+        return;
+    }
+    
+    NSString *Source_dbpath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:db_Name];
+    
+    BOOL copySuccess = [fileManager copyItemAtPath:Source_dbpath toPath:writeDBpath error:nil];
+    
+    if (!copySuccess) {
+        NSAssert(0, @"failed to create db file %@",[error localizedDescription]);
+    } else {
+        NSLog(@"db has been copied");
+    }
 }
 
 @end

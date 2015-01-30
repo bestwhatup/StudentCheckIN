@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FMDatabase.h"
+
 @import AVFoundation;
 
 @interface FirstViewController : UIViewController <UITextFieldDelegate,AVCaptureMetadataOutputObjectsDelegate,UIAlertViewDelegate>

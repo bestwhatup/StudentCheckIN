@@ -168,12 +168,28 @@
 
 - (IBAction)CheckIn:(id)sender {
     if ([Std_ID.text intValue] && ([Section.text isEqual:@"1"] || [Section.text isEqual:@"2"] || [Section.text isEqual:@"3"])) {
-        UIAlertView *alvshow = [[UIAlertView alloc] initWithTitle:@"" message:@"Check in เรียบร้อย" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alvshow show];
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        
+        NSString *dbpath = [documentsDirectory stringByAppendingPathComponent:@"CheckIN.sqlite"];
+        
+        FMDatabase *database = [FMDatabase databaseWithPath:dbpath];
+        
+        [database open];
+
+        NSString *query = [NSString stringWithFormat:@"INSERT INTO List (StdID) VALUES (\"%@\")",Std_ID.text];
+        
+        if ([database executeUpdate:query]) {
+            UIAlertView *alvshow = [[UIAlertView alloc] initWithTitle:@"" message:@"Check in เรียบร้อย" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alvshow show];
+        } else {
+            UIAlertView *alvshow = [[UIAlertView alloc] initWithTitle:@"" message:@"ไม่สามารถ Check in ได้" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alvshow show];
+        }
     } else {
         UIAlertView *alvshow = [[UIAlertView alloc] initWithTitle:@"" message:@"กรอกข้อมูลไม่ครบ หรือ กรอกไม่ถูกต้อง" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alvshow show];
     }
-
 }
+
 @end
