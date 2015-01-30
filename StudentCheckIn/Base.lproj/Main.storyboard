@@ -135,7 +135,7 @@
                             <constraint firstItem="aIj-4I-SNy" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-16" id="hhs-X5-2kr"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Check in" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Check in" image="Contact.png" id="acW-dT-cKf"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="CameraPreview" destination="Yxo-Vd-G40" id="oy5-51-Wi9"/>
@@ -205,7 +205,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="gYd-yX-Lrb" secondAttribute="trailing" constant="-16" id="nVW-hP-zZC"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Student List" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Student List" image="Albums.png" id="cPa-gy-q4n"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="TableView" destination="gYd-yX-Lrb" id="0r0-oH-9sb"/>
@@ -215,7 +215,7 @@
             </objects>
             <point key="canvasLocation" x="750" y="360"/>
         </scene>
-        <!--Send DATA-->
+        <!--Send email-->
         <scene sceneID="xiX-GN-UYY">
             <objects>
                 <viewController id="ugB-nF-ldU" customClass="SendData" sceneMemberID="viewController">
@@ -262,7 +262,7 @@
                             <constraint firstAttribute="centerX" secondItem="PDk-JN-r4M" secondAttribute="centerX" constant="-0.5" id="JB1-94-VJJ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Send DATA" id="Q5n-Gi-yPV"/>
+                    <tabBarItem key="tabBarItem" title="Send email" image="Upload.png" id="Q5n-Gi-yPV"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g0w-73-HPt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -291,7 +291,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="Albums.png" width="27" height="24"/>
+        <image name="Contact.png" width="25" height="25"/>
+        <image name="Upload.png" width="19" height="27"/>
     </resources>
 </document>

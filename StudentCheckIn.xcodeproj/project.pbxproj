@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		381C55881A7C340B0018EDB5 /* Upload.png in Resources */ = {isa = PBXBuildFile; fileRef = 381C55871A7C340B0018EDB5 /* Upload.png */; };
+		381C558A1A7C343C0018EDB5 /* Albums.png in Resources */ = {isa = PBXBuildFile; fileRef = 381C55891A7C343C0018EDB5 /* Albums.png */; };
+		381C558C1A7C34470018EDB5 /* Contact.png in Resources */ = {isa = PBXBuildFile; fileRef = 381C558B1A7C34470018EDB5 /* Contact.png */; };
 		387083701A7A21E600355B7A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3870836F1A7A21E600355B7A /* main.m */; };
 		387083731A7A21E600355B7A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 387083721A7A21E600355B7A /* AppDelegate.m */; };
 		387083761A7A21E600355B7A /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 387083751A7A21E600355B7A /* FirstViewController.m */; };
@@ -37,6 +40,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		381C55871A7C340B0018EDB5 /* Upload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Upload.png; sourceTree = "<group>"; };
+		381C55891A7C343C0018EDB5 /* Albums.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Albums.png; sourceTree = "<group>"; };
+		381C558B1A7C34470018EDB5 /* Contact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Contact.png; sourceTree = "<group>"; };
 		3870836A1A7A21E600355B7A /* StudentCheckIn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudentCheckIn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3870836E1A7A21E600355B7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3870836F1A7A21E600355B7A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -130,6 +136,9 @@
 		3870836D1A7A21E600355B7A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				381C558B1A7C34470018EDB5 /* Contact.png */,
+				381C55891A7C343C0018EDB5 /* Albums.png */,
+				381C55871A7C340B0018EDB5 /* Upload.png */,
 				38ED68061A7B54990051F544 /* CHCSVParser.h */,
 				38ED68071A7B54990051F544 /* CHCSVParser.m */,
 				3879F4631A7A9E1E0061D306 /* libsqlite3.dylib */,
@@ -264,8 +273,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3879F4791A7B248B0061D306 /* CheckIN.sqlite in Resources */,
+				381C558A1A7C343C0018EDB5 /* Albums.png in Resources */,
 				3870837C1A7A21E600355B7A /* Main.storyboard in Resources */,
+				381C558C1A7C34470018EDB5 /* Contact.png in Resources */,
 				387083811A7A21E600355B7A /* LaunchScreen.xib in Resources */,
+				381C55881A7C340B0018EDB5 /* Upload.png in Resources */,
 				3870837E1A7A21E600355B7A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
