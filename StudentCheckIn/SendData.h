@@ -11,7 +11,7 @@
 #import "CHCSVParser.h"
 #import <MessageUI/MessageUI.h>
 
-@interface SendData : UIViewController <MFMailComposeViewControllerDelegate>
+@interface SendData : UIViewController <MFMailComposeViewControllerDelegate,UIAlertViewDelegate>
 - (IBAction)SendDatatoServer:(id)sender;
 - (IBAction)deleteData:(id)sender;
 

@@ -93,9 +93,6 @@
 
 }
 
-- (IBAction)deleteData:(id)sender {
-}
-
 - (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
     UIAlertView *alv;
@@ -124,6 +121,40 @@
     
     // Close the Mail Interface
     [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+
+- (IBAction)deleteData:(id)sender {
+    
+    UIAlertView *alv = [[UIAlertView alloc] initWithTitle:@"" message:@"Are you sure ?" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Cancel", nil];
+    alv.tag = 99;
+    [alv show];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    //0 is OK
+    //1 is Cancel
+    if (buttonIndex == 0 && alertView.tag == 99) {
+        //delete data in DB
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        
+        NSString *dbpath = [documentsDirectory stringByAppendingPathComponent:@"CheckIN.sqlite"];
+        
+        FMDatabase *database = [FMDatabase databaseWithPath:dbpath];
+        
+        [database open];
+        
+        NSString *query = [NSString stringWithFormat:@"DELETE FROM List"];
+        
+        if ([database executeUpdate:query]) {
+            UIAlertView *alvshow = [[UIAlertView alloc] initWithTitle:@"" message:@"Detele เรียบร้อย" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alvshow show];
+        } else {
+            UIAlertView *alvshow = [[UIAlertView alloc] initWithTitle:@"" message:@"ไม่สามารถ Delete ได้" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alvshow show];
+        }
+    }
 }
 
 @end
