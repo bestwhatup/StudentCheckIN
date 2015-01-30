@@ -40,9 +40,9 @@
     [database open];
     
     FMResultSet *rs = [database executeQuery:@"SELECT * FROM List"];
-    
+
     while ([rs next]) {
-        NSString *date = [rs stringForColumn:@"DATE"];
+        NSString *date = [rs stringForColumn:@"Date"];
         NSString *std_id = [rs stringForColumn:@"StdID"];
         
         [date_array addObject:date];
@@ -52,15 +52,26 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [date_array count];
+    if([date_array count] != 0) {
+        return [date_array count];
+    } else {
+        return 1;
+    }
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [TableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.textLabel.text = [std_id_array objectAtIndex:indexPath.row];
-    cell.detailTextLabel.text = [date_array objectAtIndex:indexPath.row];
-    tableView.tableFooterView = [[UIView alloc] init];
-    return cell;
+    if ([date_array count] != 0) {
+        cell.textLabel.text = [std_id_array objectAtIndex:indexPath.row];
+        cell.detailTextLabel.text = [date_array objectAtIndex:indexPath.row];
+        tableView.tableFooterView = [[UIView alloc] init];
+        return cell;
+    } else {
+        cell.textLabel.text = @"No Record";
+        cell.detailTextLabel.text = @"";
+        tableView.tableFooterView = [[UIView alloc] init];
+        return cell;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

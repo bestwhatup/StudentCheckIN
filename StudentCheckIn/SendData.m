@@ -66,9 +66,11 @@
     while([results next]) {
         NSString *date = [results stringForColumn:@"DATE"];
         NSString *std_id = [results stringForColumn:@"StdID"];
+        NSString *section = [results stringForColumn:@"Section"];
         
         [csvWriter writeField:date];
         [csvWriter writeField:std_id];
+        [csvWriter writeField:section];
         [csvWriter finishLine];
     }
     [csvWriter closeStream];

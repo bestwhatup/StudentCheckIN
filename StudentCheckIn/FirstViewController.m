@@ -180,7 +180,7 @@
         [database open];
 
         //edit current date in your local timezone
-        NSString *query = [NSString stringWithFormat:@"INSERT INTO List(\"Date\",\"StdID\") values (date('now','localtime'),\"%@\")",Std_ID.text];
+        NSString *query = [NSString stringWithFormat:@"INSERT INTO List(\"Date\",\"StdID\",\"Section\") values (datetime('now','localtime'),\"%@\",\"%@\")",Std_ID.text,Section.text];
         
         if ([database executeUpdate:query]) {
             UIAlertView *alvshow = [[UIAlertView alloc] initWithTitle:@"" message:@"Check in เรียบร้อย" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
