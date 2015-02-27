@@ -62,7 +62,7 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [TableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     if ([date_array count] != 0) {
-        cell.textLabel.text = [std_id_array objectAtIndex:indexPath.row];
+        cell.textLabel.text = [NSString stringWithFormat:@"%ld. %@",(long)indexPath.row,[std_id_array objectAtIndex:indexPath.row]];
         cell.detailTextLabel.text = [date_array objectAtIndex:indexPath.row];
         tableView.tableFooterView = [[UIView alloc] init];
         return cell;
